@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="579.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
+   <children>
+      <TextField fx:id="firstNameField" layoutX="183.0" layoutY="137.0" promptText="First Name" />
+      <TextField fx:id="lastNameField" layoutX="183.0" layoutY="218.0" promptText="Last Name" />
+      <TextField fx:id="emailAddressField" layoutX="183.0" layoutY="305.0" promptText="E-mail Address" />
+      <TextField fx:id="userNameSignUpField" layoutX="504.0" layoutY="137.0" promptText="UserName" />
+      <PasswordField fx:id="passwordField" layoutX="504.0" layoutY="218.0" />
+      <Label layoutX="189.0" layoutY="106.0" text="First Name" />
+      <Label layoutX="183.0" layoutY="186.0" text="Last Name" />
+      <Label layoutX="504.0" layoutY="106.0" text="User Name" />
+      <Label layoutX="504.0" layoutY="186.0" text="Password" />
+      <Label layoutX="183.0" layoutY="272.0" text="E-mail Address" />
+      <Button fx:id="signUpButton" layoutX="679.0" layoutY="460.0" mnemonicParsing="false" onAction="#finishSignUpButtonClicked" text="Finish Sign-Up" />
+      <Button fx:id="cancelButton" layoutX="115.0" layoutY="460.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+      <Label fx:id="signUpMsgLabel" contentDisplay="CENTER" layoutX="165.0" layoutY="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="555.0" textAlignment="CENTER" wrapText="true" />
+   </children>
+</AnchorPane>

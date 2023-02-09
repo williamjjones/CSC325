@@ -2,18 +2,32 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.UserTreeSet;
+import utils.BackupRestoreTools;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	static Stage primaryStage;
+	
 	@Override
 	public void start(Stage primaryStage) {
+		
+		this.primaryStage = primaryStage;
+		BackupRestoreTools.restoreUsersTreeSet();
+		UserTreeSet userSet = UserTreeSet.getGlobalSet();
+		
+		
+		
+		userSet.display();
+		
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignInPane.fxml"));
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Main.getPrimaryStage().setTitle("Airport Ticketing System Sign-In Page!");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -23,5 +37,9 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static Stage getPrimaryStage() {
+		return primaryStage;
 	}
 }

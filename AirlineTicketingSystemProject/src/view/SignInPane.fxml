@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="511.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignInController">
+   <children>
+      <TextField fx:id="userNameField" layoutX="221.0" layoutY="194.0" prefHeight="25.0" prefWidth="267.0" promptText="Username" />
+      <PasswordField fx:id="passWordField" layoutX="221.0" layoutY="276.0" prefHeight="25.0" prefWidth="267.0" promptText="Password" />
+      <Label layoutX="221.0" layoutY="168.0" text="Username:" />
+      <Label layoutX="223.0" layoutY="250.0" text="Password:" />
+      <Button fx:id="signInButton" layoutX="434.0" layoutY="385.0" mnemonicParsing="false" onAction="#signInButtonClicked" text="Sign-In" />
+      <Label fx:id="signInLabel" contentDisplay="CENTER" layoutX="250.0" layoutY="326.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="209.0" />
+      <Button fx:id="signUpButton" layoutX="192.0" layoutY="385.0" mnemonicParsing="false" onAction="#signUpButtonClicked" text="Sign-Up!" />
+   </children>
+</AnchorPane>

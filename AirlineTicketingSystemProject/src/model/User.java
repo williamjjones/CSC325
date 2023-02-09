@@ -2,27 +2,26 @@ package model;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
+public class User implements Serializable, Comparable<User>{
 	private String firstName;
 	private String lastName;
 	private boolean isAdmin;
 	private String emailAddress;
 	private String username;
 	private String password;
-	private String profilePicture;
-	private FlightHistory flightHistory;
+	private String flightHistory;
+	
+	private static final int MIN_PASSWORD_LENGTH = 6;
 	
 	
-	
-	public User(String firstName, String lastName, String emailAddress, String username, String password, String profilePicture,
-			FlightHistory flightHistory) {
+	public User(String firstName, String lastName, String emailAddress, String username, String password,
+			String flightHistory) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.username = username;
 		this.password = password;
-		this.profilePicture = profilePicture;
 		this.flightHistory = flightHistory;
 	}
 
@@ -32,14 +31,13 @@ public class User implements Serializable{
 		this.isAdmin = isAdmin;
 	}
 	
-	public User(String firstName, String lastName, String emailAddress, String username, String password, String profilePicture) {
+	public User(String firstName, String lastName, String emailAddress, String username, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.username = username;
 		this.password = password;
-		this.profilePicture = profilePicture;
 		this.flightHistory = null;
 	}
 
@@ -119,31 +117,65 @@ public class User implements Serializable{
 	}
 
 
-	public String getProfilePicture() {
-		return profilePicture;
-	}
-
-
-	public void setProfilePicture(String profilePicture) {
-		this.profilePicture = profilePicture;
-	}
-
-
-	public FlightHistory getflightHistory() {
+	public String getflightHistory() {
 		return flightHistory;
 	}
 
 
-	public void setflightHistory(FlightHistory flightHistory) {
+	public void setflightHistory(String flightHistory) {
 		this.flightHistory = flightHistory;
+	}
+	
+	public static boolean hasMinimumOneCapital(String password) {
+		boolean capital = false;
+		for(int i = 0; i< password.length(); i++) {
+			if(Character.isUpperCase(password.charAt(i))) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
+	public static boolean hasMinimumOneLowerCase(String password) {
+		for(int i = 0; i< password.length(); i++) {
+			if(Character.isLowerCase(password.charAt(i))) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+
+	public static boolean rightLength(String password) {
+		if(password.length() >= MIN_PASSWORD_LENGTH) {
+			return true;
+		}
+		else {
+		return false;
+		}
+	}
+	
+	public static boolean hasMinOneDigit(String password) {
+		for(int i = 0; i < password.length(); i++) {
+			if (Character.isDigit(password.charAt(i))) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", isAdmin= " + isAdmin +", emailAddress=" + emailAddress
-				+ ", username=" + username + ", profilePicture=" + profilePicture + ", flightHistory=" + flightHistory
+				+ ", username=" + username + ", flightHistory=" + flightHistory
 				+ "]";
+	}
+	
+	@Override
+	public int compareTo(User o) {
+		return this.username.compareTo(o.username);
 	}
 
 }

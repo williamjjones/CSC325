@@ -1,10 +1,7 @@
 package utils;
 
-import java.util.TreeSet;
-
 import model.User;
 import model.UserTreeSet;
-import BackupRestoreTools;
 
 public class Demo {
 
@@ -16,7 +13,7 @@ public class Demo {
 		User user3 = new User("Phil", "Rogers", "phil.rogers@gmail.com", "progers", "Password1");
 		
 		UserTreeSet userSet = UserTreeSet.getGlobalSet();
-		TreeSet<User> testSet = new TreeSet<User>();
+		
 		
 		
 		userSet.insert(user1);

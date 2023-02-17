@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package bcs.mycompany.airportandcustomerclasses;
+package model;
+
+
 
 import java.util.LinkedList;
 
@@ -31,7 +29,7 @@ public class Airport {
         apPhone = phone;
         apCode = code;
         this.state = state;
-        flights = new LinkedList<flight>();
+        flights = new LinkedList<Flight>();
     }
     
     public Airport(Airport other) {

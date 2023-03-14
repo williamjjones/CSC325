@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Flight {
+public class Flight implements Serializable, Comparable<Flight>{
 	private int flightNumber;
 	private Airport origin;
 	private Airport destination;
@@ -71,7 +72,7 @@ public class Flight {
 
 	@Override
 	public String toString() {
-		return "Flight [flightNumber=" + flightNumber + ", arrivalTime=" + arrivalTime + ", departureTime="
+		return "Flight [flightNumber=" + flightNumber + " Origin=" + origin + " Destination=" + destination +", arrivalTime=" + arrivalTime + ", departureTime="
 				+ departureTime + "]";
 	}
 
@@ -87,6 +88,12 @@ public class Flight {
 		Flight other = (Flight) obj;
 		return Objects.equals(arrivalTime, other.arrivalTime) && Objects.equals(departureTime, other.departureTime)
 				&& flightNumber == other.flightNumber;
+	}
+
+
+	@Override
+	public int compareTo(Flight o) {
+		return this.origin.getApName().compareTo(o.origin.getApName());
 	}
 	
 	

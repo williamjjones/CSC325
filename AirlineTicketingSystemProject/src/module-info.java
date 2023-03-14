@@ -8,6 +8,7 @@ module AirlineTicketingSystemProject {
     requires javafx.web;
     requires javafx.swt;
 	
-	opens application to javafx.graphics, javafx.fxml;
-	opens controller to javafx.graphics, javafx.fxml;
+	opens application to javafx.graphics, javafx.fxml, javafx.base;
+	opens controller to javafx.graphics, javafx.fxml, javafx.base;
+	opens model to javafx.base;
 }

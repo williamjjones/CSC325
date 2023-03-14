@@ -2,26 +2,21 @@ package model;
 
 
 
-import java.util.LinkedList;
+import java.io.Serializable;
 
-/**
- *
- * @author nickl
- */
-public class Airport {
+
+public class Airport implements Serializable, Comparable<Airport> {
     
     private String apName;
     private String apPhone;
     private String apCode;
     private String state;
-    private LinkedList<Flight> flights;
     
     public Airport() {
         apName = null;
         apPhone = null;
         apCode = null;
         state = null;
-        flights = new LinkedList<Flight>();
     }
     
     public Airport(String name, String phone, String code, String state ) {
@@ -29,7 +24,6 @@ public class Airport {
         apPhone = phone;
         apCode = code;
         this.state = state;
-        flights = new LinkedList<Flight>();
     }
     
     public Airport(Airport other) {
@@ -67,24 +61,17 @@ public class Airport {
     public String getApCode() {
         return apCode;
     }
+
+	@Override
+	public String toString() {
+		return "Airport [apName=" + apName + ", apPhone=" + apPhone + ", apCode=" + apCode + ", state=" + state + "]";
+	}
+
+	@Override
+	public int compareTo(Airport o) {
+		return this.apCode.compareTo(o.apCode);
+	}
     
-    public void addFlight(Flight newFlight) {
-        flights.add(newFlight);
-     }
-    
-    
-    public void printFlights() {
-        System.out.println(flights);
-    }
-    
-    public void clearFlights() {
-        flights.clear();
-    }
-    
-    @Override 
-    public String toString() {
-        return apName + " " + apPhone + " " + state + " " + apCode;
-    }
-    
+
     
 }

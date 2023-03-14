@@ -16,7 +16,9 @@ import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+import model.AirportTreeSet;
 import model.FlightHistory;
+import model.FlightTreeSet;
 import model.User;
 import model.UserTreeSet;
 
@@ -36,11 +38,24 @@ public class BackupRestoreTools{
 			}
 		}
 		
-		public static void backupHikeHistory(FlightHistory flightBag) {
+		public static void backupFlightHistory(FlightTreeSet flightSet) {
 			try {
-				FileOutputStream fos = new FileOutputStream("datastor/flighthistory.dat");
+				FileOutputStream fos = new FileOutputStream("datastor/flights.dat");
 				ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(flightBag);
+				oos.writeObject(flightSet);
+				oos.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public static void backupAirportHistory(AirportTreeSet airportSet) {
+			try {
+				FileOutputStream fos = new FileOutputStream("datastor/airports.dat");
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(airportSet);
 				oos.close();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -78,26 +93,55 @@ public class BackupRestoreTools{
 			
 		}
 		
-		public static FlightHistory restoreHikeHistory() {
-
-			try {
-				File file = new File("datastor/flighthistory.dat");
-				if (file.exists()) {
-					FileInputStream fis = new FileInputStream("datastor/flighthistory.dat");
-					ObjectInputStream oos = new ObjectInputStream(fis);
-					FlightHistory myBag = (FlightHistory) (oos.readObject());
-					oos.close();
-					return myBag;
+		
+		public static void restoreFlightTreeSet() {
+			File file = new File("datastor/flights.dat");
+			if (file.exists()) {
+				try {
+					FileInputStream fis = new FileInputStream("datastor/flights.dat");
+					ObjectInputStream ois = new ObjectInputStream(fis);
+					FlightTreeSet flightSet = (FlightTreeSet) (ois.readObject());
+					FlightTreeSet.setGlobalSet(flightSet);
+					ois.close();
+					
+					
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
 				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return new FlightHistory(500);
 
+			} else {
+				
+			}
+			
+		}
+		
+		public static void restoreAirportTreeSet() {
+			File file = new File("datastor/airports.dat");
+			if (file.exists()) {
+				try {
+					FileInputStream fis = new FileInputStream("datastor/airports.dat");
+					ObjectInputStream ois = new ObjectInputStream(fis);
+					AirportTreeSet airportSet = (AirportTreeSet) (ois.readObject());
+					AirportTreeSet.setGlobalSet(airportSet);
+					ois.close();
+					
+					
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+
+			} else {
+				
+			}
+			
 		}
 		
 		

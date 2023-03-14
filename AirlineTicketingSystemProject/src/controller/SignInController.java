@@ -38,7 +38,7 @@ public class SignInController {
 		if(UserTreeSet.getGlobalSet().isSignInCorrect(username, password)) {
 			signInLabel.setText("Signed in Successfully!");
 			try {
-				AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/MainArea.fxml"));
+				AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/UserMain.fxml"));
 				Scene scene = new Scene((Parent) root,1050,700);
 				scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 				Main.getPrimaryStage().setTitle("Welcome to the Main Work Area!");

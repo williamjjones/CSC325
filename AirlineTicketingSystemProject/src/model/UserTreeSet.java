@@ -7,6 +7,7 @@ import java.util.TreeSet;
 public class UserTreeSet implements Serializable{
 	private TreeSet<User> userSet;
 	private static UserTreeSet globalSet;
+	private static User storedUser;
 	
 	public static UserTreeSet getGlobalSet() {
 		if(UserTreeSet.globalSet == null) {
@@ -23,8 +24,21 @@ public class UserTreeSet implements Serializable{
 		UserTreeSet.globalSet = userSet;
 	}
 	
+	public static void setStoredUser(User storeUser) {
+		storedUser = storeUser;
+	}
+	
+	public static User getStoredUser() {
+		return storedUser;
+	}
+	
 	public void insert(User user) {
 		userSet.add(user);
+	}
+	
+	public User storeUser(String username) {
+		storedUser = findUser(username);
+		return storedUser;
 	}
 	
 	public User findUser(String username) {

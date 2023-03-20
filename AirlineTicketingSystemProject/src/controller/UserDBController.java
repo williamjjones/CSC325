@@ -27,6 +27,7 @@ import model.UserTreeSet;
 import utils.BackupRestoreTools;
 
 public class UserDBController implements Initializable {
+	private User signedInUser = UserTreeSet.getStoredUser();
 	
 	@FXML
 	private Button bookFlights;
@@ -57,6 +58,8 @@ public class UserDBController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb){
 		FlightTreeSet flightSet = FlightTreeSet.getGlobalSet();
 		
+		System.out.println(signedInUser);
+		
 		flightNumColumn.setCellValueFactory(new PropertyValueFactory<Flight,Integer>("flightNumber"));
 		
 		originColumn.setCellValueFactory(new PropertyValueFactory<Flight,Airport>("origin"));
@@ -77,4 +80,19 @@ public class UserDBController implements Initializable {
 		
 		
 	}
+	
+	@FXML
+	protected void myProfileButtonClicked(ActionEvent event) {
+		try {
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/UpdateProfile.fxml"));
+			Scene scene = new Scene((Parent) root,850,600);
+			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+			Main.getPrimaryStage().setTitle("Update your Profile - " + signedInUser.getUserName());
+			Main.getPrimaryStage().setScene(scene);
+			Main.getPrimaryStage().show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

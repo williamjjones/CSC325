@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="683.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserDBController">
    <children>
       <Button layoutX="419.0" layoutY="562.0" mnemonicParsing="false" text="Book Flights" />
-      <Button layoutX="125.0" layoutY="562.0" mnemonicParsing="false" text="My Profile" />
+      <Button layoutX="125.0" layoutY="562.0" mnemonicParsing="false" onAction="#myProfileButtonClicked" text="My Profile" />
       <TableView fx:id="table" layoutX="91.0" layoutY="94.0" prefHeight="428.0" prefWidth="607.0">
         <columns>
           <TableColumn fx:id="flightNumColumn" prefWidth="128.0" text="Flight Number" />

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.User;
 import model.UserTreeSet;
 
 public class SignInController {
@@ -37,6 +38,7 @@ public class SignInController {
 		
 		if(UserTreeSet.getGlobalSet().isSignInCorrect(username, password)) {
 			signInLabel.setText("Signed in Successfully!");
+			UserTreeSet.setStoredUser(UserTreeSet.getGlobalSet().findUser(username));
 			try {
 				AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/UserMain.fxml"));
 				Scene scene = new Scene((Parent) root,1050,700);
@@ -67,4 +69,5 @@ public class SignInController {
 			e.printStackTrace();
 		}
 	}
+	
 }

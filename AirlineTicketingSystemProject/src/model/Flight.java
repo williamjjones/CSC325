@@ -2,13 +2,16 @@ package model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public class Flight implements Serializable, Comparable<Flight>{
+	private static final long serialVersionUID = 1L;
 	private int flightNumber;
 	private Airport origin;
 	private Airport destination;
 	private String arrivalTime;
 	private String departureTime;
+	
 	
 	
 	public Flight(int flightNumber, Airport origin, Airport destination, String arrivalTime, String departureTime) {
@@ -67,6 +70,17 @@ public class Flight implements Serializable, Comparable<Flight>{
 
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
+	}
+	
+	private static boolean searchFindsFlightNum(Flight flightNum, String searchText){
+	    return (Integer.valueOf(flightNum.getFlightNumber()).toString().contains(searchText.toLowerCase()));
+	}
+	
+	public static Predicate<? super Flight> flightNumPredicate(String searchText){
+	    return flightNum -> {
+	        if (searchText == null || searchText.isEmpty()) return true;
+	        return searchFindsFlightNum(flightNum, searchText);
+	    };
 	}
 
 

@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -14,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -53,6 +57,12 @@ public class UserDBController implements Initializable {
 	@FXML
 	private TableColumn<Flight, String> arrivalColumn;
 	
+	@FXML
+	private TextField flightNumField;
+	
+	@FXML
+	private TextField originField;
+	
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
@@ -78,6 +88,30 @@ public class UserDBController implements Initializable {
 		
 		System.out.println("TEst");
 		
+//		flightNumField.textProperty().addListener((observable, oldValue, newValue) ->
+//		filteredData.setPredicate(Flight.flightNumPredicate(newValue))
+//				);
+//		
+		
+//		MultipleSelectionModel<Flight> lvSelModel = table.getSelectionModel();
+//		
+//		lvSelModel.setSelectionMode(SelectionMode.SINGLE);
+//		
+//		lvSelModel.selectedItemProperty().addListener(new ChangeListener<Flight>() {
+//
+//			
+//
+//			@Override
+//			public void changed(ObservableValue<? extends Flight> changed, Flight oldValue, Flight newValue) {
+//				
+//				flightNumField.setText(String.valueOf(newValue.getFlightNumber()));
+//				originField.setText(String.valueOf(newValue.getOrigin().getApCode()));
+//			
+//			}
+//
+//			
+//			
+//		});
 		
 	}
 	

@@ -18,7 +18,7 @@ public class FlightTreeSet implements Serializable{
 		return globalSet;
 		
 	}
-	private FlightTreeSet() {
+	public FlightTreeSet() {
 		flightSet = new TreeSet<Flight>();
 	}
 	
@@ -52,13 +52,13 @@ public class FlightTreeSet implements Serializable{
 	}
 	
 	public ObservableList<Flight> displayInFlight() {
-		ObservableList<Flight> cameras = FXCollections.observableArrayList();
+		ObservableList<Flight> flights = FXCollections.observableArrayList();
 		Iterator<Flight> iter = flightSet.iterator();
 		while(iter.hasNext()) {
-			Flight returnCamera = iter.next();
-			cameras.add(returnCamera);
+			Flight returnFlight = iter.next();
+			flights.add(returnFlight);
 		}
-		return cameras;
+		return flights;
 		
 	}
 	

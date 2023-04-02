@@ -3,19 +3,20 @@ package model;
 import java.io.Serializable;
 
 public class User implements Serializable, Comparable<User>{
+	private static final long serialVersionUID = 18566487;
 	private String firstName;
 	private String lastName;
 	private boolean isAdmin;
 	private String emailAddress;
 	private String username;
 	private String password;
-	private String flightHistory;
+	private FlightTreeSet flightHistory;
 	
 	private static final int MIN_PASSWORD_LENGTH = 6;
 	
 	
 	public User(String firstName, String lastName, String emailAddress, String username, String password,
-			String flightHistory) {
+			FlightTreeSet flightHistory) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -38,7 +39,7 @@ public class User implements Serializable, Comparable<User>{
 		this.emailAddress = emailAddress;
 		this.username = username;
 		this.password = password;
-		this.flightHistory = null;
+		this.flightHistory = new FlightTreeSet();
 	}
 
 	public static void createAdmin() {
@@ -117,12 +118,12 @@ public class User implements Serializable, Comparable<User>{
 	}
 
 
-	public String getflightHistory() {
+	public FlightTreeSet getflightHistory() {
 		return flightHistory;
 	}
 
 
-	public void setflightHistory(String flightHistory) {
+	public void setflightHistory(FlightTreeSet flightHistory) {
 		this.flightHistory = flightHistory;
 	}
 	

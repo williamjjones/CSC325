@@ -45,8 +45,13 @@ public class Demo {
 		flightSet.insert(flight1);
 		flightSet.insert(flight2);
 		flightSet.insert(flight3);
-		
+                
 		flightSet.display();
+		
+		FlightTreeSet users1 = user2.getflightHistory();
+		users1.insert(flight3);
+		
+		user2.getflightHistory().display();
 		
 		BackupRestoreTools.backupUsersTreeSet(userSet);
 		BackupRestoreTools.backupFlightHistory(flightSet);

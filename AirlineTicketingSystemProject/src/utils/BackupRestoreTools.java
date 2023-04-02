@@ -17,7 +17,6 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 import model.AirportTreeSet;
-import model.FlightHistory;
 import model.FlightTreeSet;
 import model.User;
 import model.UserTreeSet;
@@ -69,7 +68,7 @@ public class BackupRestoreTools{
 
 		
 		public static void restoreUsersTreeSet() {
-			File file = new File("datastor/users.dat");
+			File file = new File("datastor/usersSet.dat");
 			if (file.exists()) {
 				try {
 					FileInputStream fis = new FileInputStream("datastor/usersSet.dat");

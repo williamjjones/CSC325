@@ -66,9 +66,9 @@ public class SignUpController {
 				BackupRestoreTools.backupUsersTreeSet(UserTreeSet.getGlobalSet());
 				try {
 					AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignInPane.fxml"));
-					Scene scene = new Scene((Parent) root,700,600);
+					Scene scene = new Scene((Parent) root,800,600);
 					scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-					Main.getPrimaryStage().setTitle("Welcome to the Markov Text Generator Sign-In Page!");
+					Main.getPrimaryStage().setTitle("Airport Ticketing System Sign-In Page!");
 					Main.getPrimaryStage().setScene(scene);
 					Main.getPrimaryStage().show();
 				} catch(Exception e) {
@@ -83,9 +83,9 @@ public class SignUpController {
 		try {
 			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignInPane.fxml"));
-			Scene scene = new Scene(root,700,600);
+			Scene scene = new Scene(root,800,600);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-			Main.getPrimaryStage().setTitle("Welcome to the Markov Text Generator Sign-In Page!");
+			Main.getPrimaryStage().setTitle("Airport Ticketing System Sign-In Page!");
 			Main.getPrimaryStage().setScene(scene);
 			Main.getPrimaryStage().show();
 		} catch(Exception e) {

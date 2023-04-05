@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.8459119496855346" prefHeight="421.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<SplitPane dividerPositions="0.8459119496855346" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminDashboardController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="462.0">
          <children>
@@ -12,26 +13,63 @@
               <tabs>
                 <Tab text="Customers">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
                               <VBox layoutX="93.0" layoutY="53.0" prefHeight="380.0" prefWidth="470.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <TextField promptText="Search" />
-                                          <Button mnemonicParsing="false" text="Search" />
-                                          <ComboBox prefWidth="150.0" promptText="Search field" />
+                                          <TextField fx:id="customerSearchText" promptText="Search" />
+                                          <Button mnemonicParsing="false" onAction="#customerSearchButtonClicked" text="Search" />
+                                          <ComboBox fx:id="customerSearchField" prefWidth="150.0" promptText="Search field" />
                                        </children>
                                     </HBox>
-                                    <ScrollPane prefHeight="235.0" prefWidth="470.0">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                        <AnchorPane>
                                              <children>
-                                                <ListView prefHeight="200.0" />
+                                                <ListView fx:id="customerListView" prefHeight="200.0" />
                                              </children>
                                           </AnchorPane>
-                                      </content>
-                                    </ScrollPane>
+                                          <GridPane hgap="5.0" vgap="5.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <Label text="First Name" />
+                                                <Label text="Last Name" GridPane.columnIndex="2" />
+                                                <TextField fx:id="firstNameField" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                                                <TextField fx:id="lastNameField" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                                                <TextField fx:id="usernameField" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                                                <TextField fx:id="passwordField" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                                                <Label text="Username" GridPane.rowIndex="2" />
+                                                <Label text="Password" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="Email" GridPane.rowIndex="4" />
+                                                <CheckBox fx:id="isAdminCheckBox" mnemonicParsing="false" text="Admin" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </CheckBox>
+                                                <TextField fx:id="emailField" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                                                <Button fx:id="saveButton" mnemonicParsing="false" onAction="#customerSaveButtonClicked" text="Save" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -97,7 +135,7 @@
               </tabs>
             </TabPane>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="105.0">
          <children>
             <Button layoutX="14.0" layoutY="27.0" mnemonicParsing="false" text="Logout" />
          </children></AnchorPane>

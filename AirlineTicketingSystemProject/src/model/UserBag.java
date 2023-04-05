@@ -123,9 +123,7 @@ public class UserBag implements Serializable{
 		return false;
 	}
 	
-	public void setHikeHistoryForLastUser(FlightHistory flightHistory) {
-		users[nElems-1].setHikingHistory(flightHistory);
-	}
+	
 	
 	public boolean isUserNameValid(String userName) {
 		for(int i = 0; i< nElems; i++) {

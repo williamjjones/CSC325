@@ -96,7 +96,11 @@ public class User implements Serializable, Comparable<User>{
 		}
 		
 	}
-
+        
+        // used for setting password in admin dash
+        public void setPassword(String password){
+            this.password = password;
+        }
 
 	public String getEmailAddress() {
 		return emailAddress;
@@ -165,7 +169,7 @@ public class User implements Serializable, Comparable<User>{
 		}
 		return false;
 	}
-
+        
 
 	@Override
 	public String toString() {

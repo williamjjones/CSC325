@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 
 public class Airport implements Serializable, Comparable<Airport> {
-    
+	private static final long serialVersionUID = 57898413;
     private String apName;
     private String apPhone;
     private String apCode;
@@ -61,11 +61,18 @@ public class Airport implements Serializable, Comparable<Airport> {
     public String getApCode() {
         return apCode;
     }
+    
+    public String display() {
+		return "Airport [apName=" + apName + ", apPhone=" + apPhone + ", apCode=" + apCode + ", state=" + state + "]";
+	}
+
 
 	@Override
 	public String toString() {
-		return "Airport [apName=" + apName + ", apPhone=" + apPhone + ", apCode=" + apCode + ", state=" + state + "]";
+		return apCode + " - " + apName;
 	}
+	
+	
 
 	@Override
 	public int compareTo(Airport o) {

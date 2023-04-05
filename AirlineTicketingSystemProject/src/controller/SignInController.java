@@ -43,7 +43,8 @@ public class SignInController {
 				AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/UserMain.fxml"));
 				Scene scene = new Scene((Parent) root,1050,700);
 				scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-				Main.getPrimaryStage().setTitle("Welcome to the Main Work Area!");
+				User signedInUser = UserTreeSet.getGlobalSet().findUser(username);
+				Main.getPrimaryStage().setTitle("Welcome to the Flight Dashboard, " + signedInUser.getFirstName() + " " + signedInUser.getLastName() );
 				Main.getPrimaryStage().setScene(scene);
 				Main.getPrimaryStage().show();
 			} catch(Exception e) {
@@ -62,7 +63,7 @@ public class SignInController {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignUp.fxml"));
 			Scene scene = new Scene((Parent) root,850,600);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-			Main.getPrimaryStage().setTitle("Sign Up to use the Markov Text Generator");
+			Main.getPrimaryStage().setTitle("Airport Ticketing System Sign-Up Page!");
 			Main.getPrimaryStage().setScene(scene);
 			Main.getPrimaryStage().show();
 		} catch(Exception e) {

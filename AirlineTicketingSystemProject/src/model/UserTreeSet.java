@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -8,6 +9,7 @@ public class UserTreeSet implements Serializable{
 	private TreeSet<User> userSet;
 	private static UserTreeSet globalSet;
 	private static User storedUser;
+        private static final long serialVersionUID = -7454500041812709768L;
 	
 	public static UserTreeSet getGlobalSet() {
 		if(UserTreeSet.globalSet == null) {
@@ -59,8 +61,35 @@ public class UserTreeSet implements Serializable{
             System.out.print(iterator.next() + " ");
         System.out.println();
         }
+        
 		
 	}
+        
+        public ArrayList<String> returnUsernames(){
+            ArrayList<String> arr = new ArrayList<>();
+            
+            Iterator<User> iter = userSet.iterator();
+            while (iter.hasNext()) {
+                arr.add(iter.next().getUserName());
+            }
+            
+            return arr;
+        }
+        
+        public ArrayList<String> returnUsernames(String searchPhrase){
+            ArrayList<String> arr = new ArrayList<>();
+            
+            Iterator<User> iter = userSet.iterator();
+            while (iter.hasNext()) {
+                String username = iter.next().getUserName();
+                if(username.contains(searchPhrase))
+                {
+                    arr.add(username);
+                }
+            }
+            
+            return arr;
+        }
 	
 	public boolean isSignInCorrect(String username, String password) {
 			try {

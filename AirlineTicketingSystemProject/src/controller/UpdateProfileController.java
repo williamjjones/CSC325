@@ -104,10 +104,10 @@ public class UpdateProfileController implements Initializable {
 
 				BackupRestoreTools.backupUsersTreeSet(UserTreeSet.getGlobalSet());
 				try {
-					AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignInPane.fxml"));
-					Scene scene = new Scene((Parent) root,700,600);
+					AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/UserMain.fxml"));
+					Scene scene = new Scene((Parent) root,1050,700);
 					scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-					Main.getPrimaryStage().setTitle("Airport Ticketing System Sign-In Page!");
+					Main.getPrimaryStage().setTitle("Welcome to the Flight Dashboard, " + signedInUser.getFirstName() + " " + signedInUser.getLastName() );
 					Main.getPrimaryStage().setScene(scene);
 					Main.getPrimaryStage().show();
 				} catch(Exception e) {
@@ -121,10 +121,10 @@ public class UpdateProfileController implements Initializable {
 	protected void cancelButtonClicked(ActionEvent event) {
 		try {
 			
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignInPane.fxml"));
-			Scene scene = new Scene(root,700,600);
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/UserMain.fxml"));
+			Scene scene = new Scene(root,1050,700);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-			Main.getPrimaryStage().setTitle("Welcome to the Flights App!");
+			Main.getPrimaryStage().setTitle("Welcome to the Flight Dashboard, " + signedInUser.getFirstName() + " " + signedInUser.getLastName() );
 			Main.getPrimaryStage().setScene(scene);
 			Main.getPrimaryStage().show();
 		} catch(Exception e) {

@@ -1,12 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
 public class AirportTreeSet implements Serializable{
 	private TreeSet<Airport> airportSet;
 	private static AirportTreeSet globalSet;
+        private static final long serialVersionUID = 4881975949624315561L;
 	
 	public static AirportTreeSet getGlobalSet() {
 		if(AirportTreeSet.globalSet == null) {
@@ -60,6 +62,32 @@ public class AirportTreeSet implements Serializable{
 		}
 		return false;
 	}
+        
+        public ArrayList<String> returnApCodes(){
+            ArrayList<String> arr = new ArrayList<>();
+            
+            Iterator<Airport> iter = airportSet.iterator();
+            while (iter.hasNext()) {
+                arr.add(iter.next().getApCode());
+            }
+            
+            return arr;
+        }
+        
+        public ArrayList<String> returnApCodes(String searchPhrase){
+            ArrayList<String> arr = new ArrayList<>();
+            
+            Iterator<Airport> iter = airportSet.iterator();
+            while (iter.hasNext()) {
+                String apCode = iter.next().getApCode();
+                if(apCode.contains(searchPhrase))
+                {
+                    arr.add(apCode);
+                }
+            }
+            
+            return arr;
+        }
 	
 
 }

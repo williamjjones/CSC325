@@ -15,9 +15,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Airport;
+import model.AirportTreeSet;
 import model.User;
 import model.UserTreeSet;
 import model.UserBag;
+import utils.BackupRestoreTools;
 
 /**
  *
@@ -79,10 +82,22 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private CheckBox isAdminCheckBox;
+    
+    @FXML
+    private TextField apCodeField;
+    
+    @FXML
+    private TextField apNameField;
+    
+    @FXML
+    private TextField apPhoneField;
+    
+    @FXML
+    private TextField apStateField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Add event listener to the ListView selection model
+        // Add event listener to the customerListView selection model
         customerListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             // Handle selection event
             if (newValue != null) {
@@ -100,6 +115,21 @@ public class AdminDashboardController implements Initializable {
                 }
             }
         });
+        
+        // Add event listener to the airportListView selection model
+        airportListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Handle selection event
+            if (newValue != null) {
+                System.out.println("Selected item: " + newValue);
+                selectedAirport = newValue;
+                Airport airport = AirportTreeSet.getGlobalSet().findAirport(newValue);
+                
+                apCodeField.setText(airport.getApCode());
+                apNameField.setText(airport.getApName());
+                apPhoneField.setText(airport.getApPhone());
+                apStateField.setText(airport.getState());
+            }
+        });
     }
 
     @FXML
@@ -111,9 +141,9 @@ public class AdminDashboardController implements Initializable {
         UserTreeSet userTreeSet = UserTreeSet.getGlobalSet();
         ArrayList<String> arr;
         if (customerSearchText.getText().isBlank()) {
-            arr = userTreeSet.returnUsernames();
+            arr = userTreeSet.getUsernames();
         } else {
-            arr = userTreeSet.returnUsernames(customerSearchText.getText());
+            arr = userTreeSet.getUsernames(customerSearchText.getText());
         }
 
         customerListView.getItems().addAll(arr);
@@ -132,6 +162,39 @@ public class AdminDashboardController implements Initializable {
         
         customerListView.getSelectionModel().clearSelection();
         
+        BackupRestoreTools.backupUsersTreeSet(UserTreeSet.getGlobalSet());
+        System.out.println("Information saved!");
+    }
+    
+    @FXML
+    void airportSearchButtonClicked(ActionEvent event) {
+        airportListView.getSelectionModel().clearSelection();
+        airportListView.getItems().clear();
+        // Populate the list with entries
+
+        AirportTreeSet airportTreeSet = AirportTreeSet.getGlobalSet();
+        ArrayList<String> arr;
+        if (airportSearchText.getText().isBlank()) {
+            arr = airportTreeSet.returnApCodes();
+        } else {
+            arr = airportTreeSet.returnApCodes(airportSearchText.getText());
+        }
+
+        airportListView.getItems().addAll(arr);
+    }
+
+    @FXML
+    void airportSaveButtonClicked(ActionEvent event) {
+        Airport airport = AirportTreeSet.getGlobalSet().findAirport(selectedAirport);
+        
+        airport.setApCode(apCodeField.getText());
+        airport.setApName(apNameField.getText());
+        airport.setApPhone(apPhoneField.getText());
+        airport.setState(apStateField.getText());
+        
+        airportListView.getSelectionModel().clearSelection();
+        
+        BackupRestoreTools.backupAirportHistory(AirportTreeSet.getGlobalSet());
         System.out.println("Information saved!");
     }
 

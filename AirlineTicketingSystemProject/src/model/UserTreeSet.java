@@ -65,7 +65,7 @@ public class UserTreeSet implements Serializable{
 		
 	}
         
-        public ArrayList<String> returnUsernames(){
+        public ArrayList<String> getUsernames(){
             ArrayList<String> arr = new ArrayList<>();
             
             Iterator<User> iter = userSet.iterator();
@@ -76,7 +76,7 @@ public class UserTreeSet implements Serializable{
             return arr;
         }
         
-        public ArrayList<String> returnUsernames(String searchPhrase){
+        public ArrayList<String> getUsernames(String searchPhrase){
             ArrayList<String> arr = new ArrayList<>();
             
             Iterator<User> iter = userSet.iterator();

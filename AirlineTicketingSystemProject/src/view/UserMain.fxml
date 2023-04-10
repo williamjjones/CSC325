@@ -7,10 +7,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="683.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserDBController">
+<AnchorPane prefHeight="679.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserDBController">
    <children>
       <Button layoutX="684.0" layoutY="562.0" mnemonicParsing="false" text="Book Flights" />
       <Button layoutX="91.0" layoutY="562.0" mnemonicParsing="false" onAction="#myProfileButtonClicked" text="My Profile" />
+      <Button layoutX="394.0" layoutY="562.0" mnemonicParsing="false" onAction="#cancelFlightButtonClicked" text="Cancel Flights" />
+      <Button layoutX="41.0" layoutY="626.0" mnemonicParsing="false" onAction="#signOutButtonClicked" text="Sign Out" />
       <TableView fx:id="table" layoutX="91.0" layoutY="95.0" prefHeight="427.0" prefWidth="666.0">
         <columns>
           <TableColumn fx:id="flightNumColumn" prefWidth="128.0" text="Flight Number" />

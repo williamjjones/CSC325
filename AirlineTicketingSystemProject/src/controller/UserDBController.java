@@ -66,7 +66,7 @@ public class UserDBController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
-		FlightTreeSet flightSet = FlightTreeSet.getGlobalSet();
+		FlightTreeSet flightSet = signedInUser.getflightHistory();
 		
 		System.out.println(signedInUser);
 		
@@ -93,25 +93,26 @@ public class UserDBController implements Initializable {
 //				);
 //		
 		
-//		MultipleSelectionModel<Flight> lvSelModel = table.getSelectionModel();
-//		
-//		lvSelModel.setSelectionMode(SelectionMode.SINGLE);
-//		
-//		lvSelModel.selectedItemProperty().addListener(new ChangeListener<Flight>() {
-//
-//			
-//
-//			@Override
-//			public void changed(ObservableValue<? extends Flight> changed, Flight oldValue, Flight newValue) {
-//				
-//				flightNumField.setText(String.valueOf(newValue.getFlightNumber()));
-//				originField.setText(String.valueOf(newValue.getOrigin().getApCode()));
-//			
-//			}
-//
-//			
-//			
-//		});
+		MultipleSelectionModel<Flight> lvSelModel = table.getSelectionModel();
+		
+		lvSelModel.setSelectionMode(SelectionMode.SINGLE);
+		
+		
+		lvSelModel.selectedItemProperty().addListener(new ChangeListener<Flight>() {
+
+			
+
+			@Override
+			public void changed(ObservableValue<? extends Flight> changed, Flight oldValue, Flight newValue) {
+				
+				flightNumField.setText(String.valueOf(newValue.getFlightNumber()));
+				originField.setText(String.valueOf(newValue.getOrigin().getApCode()));
+			
+			}
+
+			
+			
+		});
 		
 	}
 	
@@ -122,6 +123,39 @@ public class UserDBController implements Initializable {
 			Scene scene = new Scene((Parent) root,850,600);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			Main.getPrimaryStage().setTitle("Update your Profile - " + signedInUser.getUserName());
+			Main.getPrimaryStage().setScene(scene);
+			Main.getPrimaryStage().show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	protected void cancelFlightButtonClicked(ActionEvent event) {
+		
+		
+		FlightTreeSet removeFlightSet = signedInUser.getflightHistory();
+		removeFlightSet.removeFlight(removeFlightSet, Integer.valueOf(flightNumField.getText()));
+		signedInUser.getflightHistory().display();
+		
+		BackupRestoreTools.backupUsersTreeSet(UserTreeSet.getGlobalSet());
+		
+		FilteredList<Flight> filteredData;
+		 filteredData = new FilteredList<>(FXCollections.observableArrayList(signedInUser.getflightHistory().displayInFlight()));
+		
+		
+		table.setItems(filteredData);
+			
+	}
+	
+	@FXML
+	protected void signOutButtonClicked(ActionEvent event) {
+		try {
+			
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignInPane.fxml"));
+			Scene scene = new Scene(root,800,600);
+			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+			Main.getPrimaryStage().setTitle("Airport Ticketing System Sign-In Page!");
 			Main.getPrimaryStage().setScene(scene);
 			Main.getPrimaryStage().show();
 		} catch(Exception e) {

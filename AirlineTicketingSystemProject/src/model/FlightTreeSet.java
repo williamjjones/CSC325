@@ -22,6 +22,13 @@ public class FlightTreeSet implements Serializable{
 		flightSet = new TreeSet<Flight>();
 	}
 	
+	public TreeSet<Flight> getFlightSet() {
+		return flightSet;
+	}
+	public void setFlightSet(TreeSet<Flight> flightSet) {
+		this.flightSet = flightSet;
+	}
+	
 	public static void setGlobalSet(FlightTreeSet userSet) {
 		FlightTreeSet.globalSet = userSet;
 	}
@@ -38,6 +45,12 @@ public class FlightTreeSet implements Serializable{
 				return returnFlight;
 		}
 		return null;
+	}
+	
+	public void removeFlight(FlightTreeSet flightHistory, int flightNumber) {
+		Flight deleteFlight = findFlight(flightNumber);
+		TreeSet<Flight> userFlights = flightHistory.getFlightSet();
+		userFlights.remove(deleteFlight);
 	}
 
 	public void display() {

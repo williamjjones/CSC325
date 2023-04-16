@@ -17,9 +17,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.Airport;
 import model.AirportTreeSet;
+import model.Flight;
+import model.FlightTreeSet;
 import model.User;
 import model.UserTreeSet;
-import model.UserBag;
 import utils.BackupRestoreTools;
 
 /**
@@ -94,6 +95,21 @@ public class AdminDashboardController implements Initializable {
     
     @FXML
     private TextField apStateField;
+    
+    @FXML
+    private TextField destinationAirportField;
+
+    @FXML
+    private TextField arrivalTimeField;
+    
+    @FXML
+    private TextField departureTimeField;
+    
+    @FXML
+    private TextField originAirportField;
+    
+    @FXML
+    private TextField flightNumberField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -128,6 +144,22 @@ public class AdminDashboardController implements Initializable {
                 apNameField.setText(airport.getApName());
                 apPhoneField.setText(airport.getApPhone());
                 apStateField.setText(airport.getState());
+            }
+        });
+        
+        // Add event listener to the flightListView selection model
+        flightListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Handle selection event
+            if (newValue != null) {
+                System.out.println("Selected item: " + newValue);
+                selectedFlight = newValue;
+                Flight flight = FlightTreeSet.getGlobalSet().findFlight(Integer.parseInt(newValue));
+                
+                originAirportField.setText(flight.getOrigin().getApCode());
+                destinationAirportField.setText(flight.getDestination().getApCode());
+                departureTimeField.setText(flight.getDepartureTime());
+                arrivalTimeField.setText(flight.getArrivalTime());
+                flightNumberField.setText(Integer.toString(flight.getFlightNumber()));
             }
         });
     }
@@ -197,6 +229,29 @@ public class AdminDashboardController implements Initializable {
         BackupRestoreTools.backupAirportHistory(AirportTreeSet.getGlobalSet());
         System.out.println("Information saved!");
     }
+    
+    @FXML
+    void flightSearchButtonClicked(ActionEvent event) {
+        flightListView.getSelectionModel().clearSelection();
+        flightListView.getItems().clear();
+        // Populate the list with entries
+
+        FlightTreeSet flightTreeSet = FlightTreeSet.getGlobalSet();
+        ArrayList<String> arr;
+        if (flightSearchText.getText().isBlank()) {
+            arr = flightTreeSet.returnFlightNums();
+        } else {
+            arr = flightTreeSet.returnFlightNums(flightSearchText.getText());
+        }
+
+        flightListView.getItems().addAll(arr);
+    }
+
+    @FXML
+    void flightSaveButtonClicked(ActionEvent event) {
+        //NYI
+    }
+
 
     @FXML
     protected void logoutButtonClicked(ActionEvent event) {

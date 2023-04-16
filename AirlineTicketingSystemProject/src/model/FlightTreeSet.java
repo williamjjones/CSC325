@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -10,6 +11,7 @@ import javafx.collections.ObservableList;
 public class FlightTreeSet implements Serializable{
 	private TreeSet<Flight> flightSet;
 	private static FlightTreeSet globalSet;
+        private static final long serialVersionUID = 8259469692953558898L;
 	
 	public static FlightTreeSet getGlobalSet() {
 		if(FlightTreeSet.globalSet == null) {
@@ -87,6 +89,32 @@ public class FlightTreeSet implements Serializable{
 		}
 		return false;
 	}
+        
+        public ArrayList<String> returnFlightNums(){
+            ArrayList<String> arr = new ArrayList<>();
+            
+            Iterator<Flight> iter = flightSet.iterator();
+            while (iter.hasNext()) {
+                arr.add(Integer.toString(iter.next().getFlightNumber()));
+            }
+            
+            return arr;
+        }
+        
+        public ArrayList<String> returnFlightNums(String searchPhrase){
+            ArrayList<String> arr = new ArrayList<>();
+            
+            Iterator<Flight> iter = flightSet.iterator();
+            while (iter.hasNext()) {
+                int flightNumber = iter.next().getFlightNumber();
+                if(flightNumber == Integer.parseInt(searchPhrase))
+                {
+                    arr.add(Integer.toString(flightNumber));
+                }
+            }
+            
+            return arr;
+        }
 	
 
 }

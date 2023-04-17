@@ -249,9 +249,43 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     void flightSaveButtonClicked(ActionEvent event) {
-        //NYI
-    }
+        Flight flight = FlightTreeSet.getGlobalSet().findFlight(Integer.parseInt(selectedFlight));
+        
+        try{
+            Airport originAirport = AirportTreeSet.getGlobalSet().findAirport(originAirportField.getText());
+            if(originAirport == null) {
+                throw new Exception("Unknown origin airport, try again.");
+            }
+            flight.setOrigin(originAirport);
+            
+            Airport destinationAirport = AirportTreeSet.getGlobalSet().findAirport(destinationAirportField.getText());
+            if(destinationAirport == null) {
+                throw new Exception("Unknown destination airport, try again.");
+            }
+            flight.setDestination(destinationAirport);
+            
+            flight.setFlightNumber(Integer.parseInt(flightNumberField.getText()));
+            flight.setDepartureTime(departureTimeField.getText());
+            flight.setArrivalTime(arrivalTimeField.getText());
+            
+            flightListView.getSelectionModel().clearSelection();
+        
+            BackupRestoreTools.backupFlightHistory(FlightTreeSet.getGlobalSet());
+            System.out.println("Information saved!");
+            
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Save failed!");
+            alert.setHeaderText(null);
+            
+            alert.setContentText(e.getMessage());
 
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+
+            alert.showAndWait();
+        }
+    }
 
     @FXML
     protected void logoutButtonClicked(ActionEvent event) {

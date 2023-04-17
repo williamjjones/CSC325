@@ -15,6 +15,7 @@ public class Demo {
 		User user1 = new User("Will", "Jones", "will.jones@gmail.com", "wjones", "Password1");
 		User user2 = new User("Dina", "Frances", "dina.frances@gmail.com", "dfrances", "Password1");
 		User user3 = new User("Phil", "Rogers", "phil.rogers@gmail.com", "progers", "Password1");
+		User admin = User.createAdmin();
 		
 		Airport JFK = new Airport("John F. Kennedy International Airport", "888-888-8888", "JFK", "NY");
 		Airport LAX = new Airport("Los Angeles International Airport", "343-555-5555", "LAX", "CA");
@@ -33,6 +34,7 @@ public class Demo {
 		userSet.insert(user1);
 		userSet.insert(user2);
 		userSet.insert(user3);
+		userSet.insert(admin);
 		
 		userSet.display();
 		
@@ -48,10 +50,14 @@ public class Demo {
                 
 		flightSet.display();
 		
-		FlightTreeSet users1 = user2.getflightHistory();
-		users1.insert(flight3);
+		FlightTreeSet bogusTreeSet = user1.getflightHistory();
+		bogusTreeSet.insert(flight3);
 		
-		user2.getflightHistory().display();
+		user1.getflightHistory().display();
+		
+//		FlightTreeSet test = user2.getflightHistory();
+//		test.removeFlight(test, 102);
+//		user2.getflightHistory().display();
 		
 		BackupRestoreTools.backupUsersTreeSet(userSet);
 		BackupRestoreTools.backupFlightHistory(flightSet);

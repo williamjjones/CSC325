@@ -42,8 +42,9 @@ public class User implements Serializable, Comparable<User>{
 		this.flightHistory = new FlightTreeSet();
 	}
 
-	public static void createAdmin() {
+	public static User createAdmin() {
 		User admin = new User("admin", "Admin123", true);
+		return admin;
 	}
 	
 	

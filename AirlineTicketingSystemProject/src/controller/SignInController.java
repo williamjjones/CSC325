@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.User;
@@ -36,7 +37,26 @@ public class SignInController {
 		String username = userNameField.getText();
 		String password = passWordField.getText();
 		
-		if(UserTreeSet.getGlobalSet().isSignInCorrect(username, password)) {
+		
+		
+		if(UserTreeSet.getGlobalSet().isSignInCorrect(username, password) && UserTreeSet.getGlobalSet().findUser(username).isAdmin()) {
+			signInLabel.setText("Signed in Successfully!");
+			UserTreeSet.setStoredUser(UserTreeSet.getGlobalSet().findUser(username));
+			try {
+				SplitPane root = (SplitPane)FXMLLoader.load(getClass().getResource("/view/AdminDashboard.fxml"));
+				Scene scene = new Scene((Parent) root,1050,700);
+				scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+				User signedInUser = UserTreeSet.getGlobalSet().findUser(username);
+				Main.getPrimaryStage().setTitle("Welcome to the Admin Dashboard, " + signedInUser.getFirstName() + " " + signedInUser.getLastName() );
+				Main.getPrimaryStage().setScene(scene);
+				Main.getPrimaryStage().show();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		
+		}
+		
+		else if(UserTreeSet.getGlobalSet().isSignInCorrect(username, password)) {
 			signInLabel.setText("Signed in Successfully!");
 			UserTreeSet.setStoredUser(UserTreeSet.getGlobalSet().findUser(username));
 			try {

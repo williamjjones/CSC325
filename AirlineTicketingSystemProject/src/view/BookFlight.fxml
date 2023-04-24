@@ -25,5 +25,10 @@
             <Font size="18.0" />
          </font>
       </Text>
+      <Text fx:id="output" layoutX="236.0" layoutY="518.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="237.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

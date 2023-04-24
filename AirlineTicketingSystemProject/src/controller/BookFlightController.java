@@ -29,6 +29,7 @@ import model.Flight;
 import model.FlightTreeSet;
 import model.User;
 import model.UserTreeSet;
+import utils.BackupRestoreTools;
 
 /**
  * FXML Controller class
@@ -65,6 +66,8 @@ public class BookFlightController implements Initializable {
     private String departureTime;
     private String arrivalTime;
     private Flight newFlight;
+    @FXML
+    private Text output;
    
     
    
@@ -126,11 +129,8 @@ public class BookFlightController implements Initializable {
         departureTime = departureColumn.getCellData(index);
         arrivalTime = arrivalColumn.getCellData(index);
         
-         newFlight = new Flight(flightNum.intValue(), origin, destination, departureTime, arrivalTime);
+  
         
-        signedInUser.setflightHistory(newFlight);
-        
-        System.out.println(signedInUser.getflightHistory());
  
         
     }
@@ -138,7 +138,18 @@ public class BookFlightController implements Initializable {
     @FXML
     private void bookFlightButtonClicked(ActionEvent event) {
         
-       
+       newFlight = new Flight(flightNum.intValue(), origin, destination, departureTime, arrivalTime);
+        
+        
+        FlightTreeSet bogusTreeSet = signedInUser.getflightHistory();
+        
+        bogusTreeSet.insert(newFlight);
+        
+        BackupRestoreTools.backupUsersTreeSet(UserTreeSet.getGlobalSet());
+        
+        output.setText("Flight " + flightNum + " added!");
+        
+        bogusTreeSet.display();
         
     }
 

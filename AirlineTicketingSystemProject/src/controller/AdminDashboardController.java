@@ -4,6 +4,7 @@
  */
 package controller;
 
+import application.Main;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,8 +14,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import model.Airport;
 import model.AirportTreeSet;
 import model.Flight;
@@ -50,15 +55,6 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private TextField airportSearchText;
-
-    @FXML
-    private ComboBox<String> customerSearchField;
-
-    @FXML
-    private ComboBox<String> flightSearchField;
-
-    @FXML
-    private ComboBox<String> airportSearchField;
 
     @FXML
     private Button logoutButton;
@@ -288,14 +284,18 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    protected void logoutButtonClicked(ActionEvent event) {
+    void logoutButtonClicked(ActionEvent event) {
         System.out.println("LOGOUT TEST");
-    }
-
-    @FXML
-    protected void airportListViewSelected(ActionEvent event) {
-        System.out.println("AIRPORT SELECTED");
-        // Populate with data from selected entry
+        try {
+				AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignInPane.fxml"));
+				Scene scene = new Scene((Parent) root,750,500);
+				scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+				Main.getPrimaryStage().setTitle("Airport Ticketing System Sign-In Page!");
+				Main.getPrimaryStage().setScene(scene);
+				Main.getPrimaryStage().show();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
     }
 
 }

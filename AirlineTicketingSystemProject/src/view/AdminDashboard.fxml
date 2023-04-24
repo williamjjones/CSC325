@@ -21,7 +21,6 @@
                                        <children>
                                           <TextField fx:id="customerSearchText" promptText="Search" />
                                           <Button mnemonicParsing="false" onAction="#customerSearchButtonClicked" text="Search" />
-                                          <ComboBox fx:id="customerSearchField" prefWidth="150.0" promptText="Search field" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
@@ -86,7 +85,6 @@
                                        <children>
                                           <TextField fx:id="flightSearchText" promptText="Search" />
                                           <Button fx:id="flightSearchButton" mnemonicParsing="false" onAction="#flightSearchButtonClicked" text="Search" />
-                                          <ComboBox prefWidth="150.0" promptText="Search field" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
@@ -146,7 +144,6 @@
                                        <children>
                                           <TextField fx:id="airportSearchText" promptText="Search" />
                                           <Button fx:id="airportSearchButton" mnemonicParsing="false" onAction="#airportSearchButtonClicked" text="Search" />
-                                          <ComboBox prefWidth="150.0" promptText="Search field" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
@@ -199,7 +196,7 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="105.0">
          <children>
-            <Button layoutX="14.0" layoutY="27.0" mnemonicParsing="false" text="Logout" />
+            <Button fx:id="logoutButtton" onAction="#logoutButtonClicked" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" text="Logout" />
          </children></AnchorPane>
   </items>
 </SplitPane>

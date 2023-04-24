@@ -30,7 +30,17 @@ public class Demo {
 		Airport JFK = new Airport("John F. Kennedy International Airport", "888-888-8888", "JFK", "NY");
 		Airport LAX = new Airport("Los Angeles International Airport", "343-555-5555", "LAX", "CA");
 		Airport LAS = new Airport("Harry Reid International Airport", "522-111-1111", "LAS", "NV");
-		
+                Airport OAK = new Airport("Oakland International Airport", "123-333-4444", "OAK", "CA");
+		Airport DEN = new Airport("Denver International Airport", "231-323-5664", "DEN", "CO");
+                Airport DAB = new Airport("Daytona Beach International Airport", "132-432-6465", "DAB", "FL");
+                Airport JAX = new Airport("Jacksonville International Airport", "143-341-4356", "JAX","FL");
+                Airport CSG = new Airport("Columbus Airport", "123-444-6556", "CSG", "GA");
+                Airport SAV = new Airport("Savannah/Hilton Head International Airport", "123-445-6653", "SAV", "GA");
+                Airport MDW = new Airport("Chicago Midway International Airport", "432-443-5654", "MDW", "IL");
+                Airport MLI = new Airport("Quad City International Airport", "341-431-3324", "MLI", "IL");
+                Airport EWR = new Airport("Newark Liberty International Airport", "654-345-4664", "EWR", "NJ");
+                Airport ABQ = new Airport("Albuquerque International Sunport", "134-431-5534", "ABQ", "NM");
+                Airport ALB = new Airport("Albany International Airport", "643-453-7667", "ALB", "NY");
 		
 		Flight flight1 = new Flight(100, JFK, LAX, "12:00PM", "5:00PM");
 		Flight flight2 = new Flight(101, LAS, JFK, "2:00PM", "6:00PM");
@@ -44,6 +54,16 @@ public class Demo {
 		userSet.insert(user1);
 		userSet.insert(user2);
 		userSet.insert(user3);
+                userSet.insert(user5);
+                userSet.insert(user6);
+                userSet.insert(user7);
+                userSet.insert(user8);
+                userSet.insert(user9);
+                userSet.insert(user10);
+                userSet.insert(user11);
+                userSet.insert(user12);
+                userSet.insert(user13);
+                userSet.insert(user14);
 		userSet.insert(admin);
 		
 		userSet.display();
@@ -51,7 +71,18 @@ public class Demo {
 		airportSet.insert(JFK);
 		airportSet.insert(LAX);
 		airportSet.insert(LAS);
-		
+                airportSet.insert(OAK);
+                airportSet.insert(DEN);
+                airportSet.insert(DAB);
+                airportSet.insert(JAX);
+                airportSet.insert(CSG);
+                airportSet.insert(SAV);
+                airportSet.insert(MDW);
+                airportSet.insert(MLI);
+                airportSet.insert(EWR);
+                airportSet.insert(ABQ);
+                airportSet.insert(ALB);
+                		
 		airportSet.display();
 		
 		flightSet.insert(flight1);

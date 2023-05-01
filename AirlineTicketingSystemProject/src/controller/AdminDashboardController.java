@@ -288,7 +288,7 @@ public class AdminDashboardController implements Initializable {
         System.out.println("LOGOUT TEST");
         try {
 				AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/SignInPane.fxml"));
-				Scene scene = new Scene((Parent) root,750,500);
+				Scene scene = new Scene((Parent) root,800,600);
 				scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 				Main.getPrimaryStage().setTitle("Airport Ticketing System Sign-In Page!");
 				Main.getPrimaryStage().setScene(scene);

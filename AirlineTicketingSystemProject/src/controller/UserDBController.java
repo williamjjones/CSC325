@@ -65,7 +65,7 @@ public class UserDBController implements Initializable {
 	
 	
 	@Override
-	public void initialize(URL url, ResourceBundle rb){
+	public void initialize(URL url, ResourceBundle rb) throws NullPointerException {
 		FlightTreeSet flightSet = signedInUser.getflightHistory();
 		
 		System.out.println(signedInUser);
@@ -86,12 +86,7 @@ public class UserDBController implements Initializable {
 		
 		table.setItems(filteredData);
 		
-		System.out.println("TEst");
-		
-//		flightNumField.textProperty().addListener((observable, oldValue, newValue) ->
-//		filteredData.setPredicate(Flight.flightNumPredicate(newValue))
-//				);
-//		
+			
 		
 		MultipleSelectionModel<Flight> lvSelModel = table.getSelectionModel();
 		
@@ -105,8 +100,13 @@ public class UserDBController implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends Flight> changed, Flight oldValue, Flight newValue) {
 				
-				flightNumField.setText(String.valueOf(newValue.getFlightNumber()));
-				originField.setText(String.valueOf(newValue.getOrigin().getApCode()));
+				try {
+					flightNumField.setText(String.valueOf(newValue.getFlightNumber()));
+					originField.setText(String.valueOf(newValue.getOrigin().getApCode()));
+				} catch (NullPointerException e) {
+					// TODO Auto-generated catch block
+					
+				}
 			
 			}
 
@@ -134,18 +134,37 @@ public class UserDBController implements Initializable {
 	protected void cancelFlightButtonClicked(ActionEvent event) {
 		
 		
-		FlightTreeSet removeFlightSet = signedInUser.getflightHistory();
-		removeFlightSet.removeFlight(removeFlightSet, Integer.valueOf(flightNumField.getText()));
-		signedInUser.getflightHistory().display();
-		
-		BackupRestoreTools.backupUsersTreeSet(UserTreeSet.getGlobalSet());
-		
-		FilteredList<Flight> filteredData;
-		 filteredData = new FilteredList<>(FXCollections.observableArrayList(signedInUser.getflightHistory().displayInFlight()));
-		
-		
-		table.setItems(filteredData);
+		try {
+			FlightTreeSet removeFlightSet = signedInUser.getflightHistory();
+			removeFlightSet.removeFlight(removeFlightSet, Integer.valueOf(flightNumField.getText()));
+			signedInUser.getflightHistory().display();
 			
+			BackupRestoreTools.backupUsersTreeSet(UserTreeSet.getGlobalSet());
+			
+			FilteredList<Flight> filteredData;
+			 filteredData = new FilteredList<>(FXCollections.observableArrayList(signedInUser.getflightHistory().displayInFlight()));
+			
+			
+			table.setItems(filteredData);
+		} catch (NullPointerException e) {
+			
+		}
+			
+	}
+	
+	@FXML
+	protected void bookFlightButtonClicked(ActionEvent event) {
+		try {
+			
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/BookFlight.fxml"));
+			Scene scene = new Scene(root,800,600);
+			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+			Main.getPrimaryStage().setTitle("Please Book a Flight!");
+			Main.getPrimaryStage().setScene(scene);
+			Main.getPrimaryStage().show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML

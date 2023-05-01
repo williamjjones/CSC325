@@ -20,6 +20,6 @@
       <Label layoutX="183.0" layoutY="272.0" text="E-mail Address" />
       <Button fx:id="updateButton" layoutX="679.0" layoutY="460.0" mnemonicParsing="false" onAction="#updateButtonClicked" text="Update" />
       <Button fx:id="cancelButton" layoutX="115.0" layoutY="460.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
-      <Label fx:id="signUpMsgLabel" contentDisplay="CENTER" layoutX="165.0" layoutY="398.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="555.0" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="signUpMsgLabel" contentDisplay="CENTER" layoutX="261.0" layoutY="391.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="392.0" textAlignment="JUSTIFY" wrapText="true" />
    </children>
 </AnchorPane>

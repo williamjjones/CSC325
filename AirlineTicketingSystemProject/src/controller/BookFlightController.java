@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import application.Main;
@@ -31,11 +27,7 @@ import model.User;
 import model.UserTreeSet;
 import utils.BackupRestoreTools;
 
-/**
- * FXML Controller class
- *
- * @author nickl
- */
+
 public class BookFlightController implements Initializable {
 
     private User signedInUser = UserTreeSet.getStoredUser();
@@ -55,9 +47,7 @@ public class BookFlightController implements Initializable {
     private TableColumn<Flight, String> arrivalColumn;
     @FXML
     private Button cancelButton;
-    /**
-     * Initializes the controller class.
-     */
+
     
     Integer index;
     private Integer flightNum;
@@ -103,7 +93,7 @@ public class BookFlightController implements Initializable {
                 try {
 			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/UserMain.fxml"));
-			Scene scene = new Scene(root,700,600);
+			Scene scene = new Scene(root,1050,700);
 			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			Main.getPrimaryStage().setTitle("Welcome to the Main Work Area!");
 			Main.getPrimaryStage().setScene(scene);
